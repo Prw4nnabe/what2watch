@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getAccessToken } from './ApiAccess';
 import { useParams } from 'react-router-dom';
-/*import Swiper from 'swiper';*/
-/*import 'swiper/swiper.min.css';*/
 import '../css/MovieDetails.css';
 
 interface Movie {
   title: string;
+  backdrop_path: string;
   poster_path: string;
   budget: number;
   genres: { name: string }[];
@@ -56,19 +55,6 @@ function MovieDetails() {
           ...data,
           cast: castData.cast
         }));
-
-        /*
-        if (castSliderRef.current) {
-          new Swiper(castSliderRef.current, {
-            slidesPerView: 5,
-            spaceBetween: 15,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            },
-            direction: 'horizontal'
-          });
-        }*/
       } catch (error) {
         console.log('Wystąpił błąd podczas pobierania szczegółów filmu:', error);
       }
@@ -81,41 +67,52 @@ function MovieDetails() {
     return <div className="loading">Ładowanie...</div>;
   }
 
+  const backgroundImageStyle = {
+    backgroundImage: `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
+  };
+
   return (
-    <div className="movie-details">
-      <h1>{movie.title}</h1>
-      <img
-        src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-        alt={movie.title}
-        className="poster"
-      />
-      <p><strong className="label">Budżet:</strong> {movie.budget}</p>
-      <p><strong className="label">Gatunki:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
-      <p><strong className="label">Data premiery:</strong> {movie.release_date}</p>
-      <p><strong className="label">Czas trwania:</strong> {movie.runtime} minut</p>
-      <p><strong className="label">Status:</strong> {movie.status}</p>
-      <p className="overview">{movie.overview}</p>
-      <div className='devtime'>
-      <h2>Obsada</h2>
-      <div ref={castSliderRef} className="swiper-container">
-        <div className="swiper-wrapper">
-          {movie.cast.map(actor => (
-            <div key={actor.name} className="swiper-slide">
-              <img
-                src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
-                alt={actor.name}
-                className="single-profile"
-              />
-              <div className="actor-details">
-                <p className="actor-name">{actor.name}</p>
-                <p className="actor-character">{actor.character}</p>
-              </div>
-            </div>
-          ))}
+    <div className="movie-details-bg" style={backgroundImageStyle}>
+      <div className='overlay-bg'>
+        <div className="movie-details-content">
+          <img
+            src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+            alt={movie.title}
+            className="poster-details"
+          />
+          <div>
+            <h1>{movie.title}</h1>
+            <p><strong className="label">Budget:</strong> {movie.budget}</p>
+            <p><strong className="label">Genres:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
+            <p><strong className="label">Release Date:</strong> {movie.release_date}</p>
+            <p><strong className="label">Runtime:</strong> {movie.runtime} minut</p>
+            <p><strong className="label">Status:</strong> {movie.status}</p>
+            <p className='desc'><strong className="overview">Description:</strong> {movie.overview}</p>
+          </div>
         </div>
-        <div className="swiper-button-next"></div>
-        <div className="swiper-button-prev"></div>
       </div>
+        <div className='devtime'>
+          <h2>Obsada</h2>
+          <div ref={castSliderRef} className="swiper-container">
+            <div className="swiper-wrapper">
+              {movie.cast.map(actor => (
+                <div key={actor.name} className="swiper-slide">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200/${actor.profile_path}`}
+                    alt={actor.name}
+                    className="single-profile"
+                  />
+                  <div className="actor-details">
+                    <p className="actor-name">{actor.name}</p>
+                    <p className="actor-character">{actor.character}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="swiper-button-next"></div>
+            <div className="swiper-button-prev"></div>
+          </div>
+        
       </div>
     </div>
   );
