@@ -58,7 +58,7 @@ function ActorList() {
 
   return (
     <div className="actor-list-container">
-      <h1 className="actor-list-title">Lista aktorów</h1>
+      <h1 className="actor-list-title">Actor List</h1>
       <ul className="actor-list">
         {actors.map((actor) => (
           <ActorCard key={actor.id} actor={actor} />
@@ -66,7 +66,7 @@ function ActorList() {
       </ul>
       {currentPage < totalPages && (
         <button className="load-more-button" onClick={loadMoreActors}>
-          Załaduj więcej
+          Load More
         </button>
       )}
     </div>
@@ -87,7 +87,7 @@ function ActorCard({ actor }: ActorCardProps) {
 
   return (
     <li className="actor-card">
-      <Link to={`/actor/${actor.id}`}>
+      <Link to={`/actor/${actor.name}`}>
         <div className="actor-image-container">
           <img
             className="actor-profile"

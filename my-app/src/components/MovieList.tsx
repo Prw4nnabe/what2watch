@@ -51,7 +51,7 @@ function MovieList() {
 
   return (
     <div className="movie-list-container">
-      <h1 className="movie-list-title">Lista filmów</h1>
+      <h1 className="movie-list-title">Movie List</h1>
       <ul className="movie-list">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
@@ -59,7 +59,7 @@ function MovieList() {
       </ul>
       {currentPage < totalPages && (
         <button className="load-more-button" onClick={loadMoreMovies}>
-          Załaduj więcej
+          Load More
         </button>
       )}
     </div>

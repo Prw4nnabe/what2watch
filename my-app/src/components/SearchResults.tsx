@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../css/SearchResults.css';
 
 interface SearchResult {
@@ -33,43 +34,55 @@ const SearchResults: React.FC = () => {
   const renderSearchResult = (result: SearchResult) => {
     if (result.media_type === 'movie') {
       return (
-        <li className="searchresults-card" key={result.id}>
-          <div className="searchresults-movie">
-            <div className="searchresults-image-container">
-              {result.poster_path && (
-                <img src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} alt={result.title} />
+        <li className="movie-card" key={result.id}>
+          <Link to={`/movie/${result.id}`}>
+            <div className="movie-image-container">
+              {result.poster_path ? (
+                <img
+                  className="movie-poster"
+                  src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`}
+                  alt={result.title}
+                />
+              ) : (
+                <img className="movie-poster" src="/what2watch/placeholder.png" alt="Placeholder" />
               )}
-              <div className="searchresults-overlay">
-                <p className="searchresults-overlay-text">{shortenText(result.overview, 100)}</p>
+              <div className="movie-overlay">
+                <p className="movie-overlay-text">{shortenText(result.overview, 100)}</p>
               </div>
             </div>
-            <h2 className="searchresults-title">{result.title}</h2>
-          </div>
+            <h2 className="movie-title">{result.title}</h2>
+          </Link>
         </li>
       );
     } else if (result.media_type === 'person') {
       return (
-        <li className="searchresults-card" key={result.id}>
-          <div className="searchresults-actor">
-            <div className="searchresults-image-container">
-              {result.profile_path && (
-                <img src={`https://image.tmdb.org/t/p/w500/${result.profile_path}`} alt={result.name} />
+        <li className="actor-card" key={result.id}>
+          <Link to={`/actor/${result.name}`}>
+            <div className="actor-image-container">
+              {result.profile_path ? (
+                <img
+                  className="actor-profile"
+                  src={`https://image.tmdb.org/t/p/w500/${result.profile_path}`}
+                  alt={result.name}
+                />
+              ) : (
+                <img className="actor-profile" src="/what2watch/placeholder.png" alt="Placeholder" />
               )}
-              <div className="searchresults-overlay">
-                <p className="searchresults-overlay-text">
+              <div className="actor-overlay">
+                <p className="actor-overlay-text">
                   Known for <br></br>
-                  {result.known_for && result.known_for.map((movie, index) => (
-                    <React.Fragment>
-                      {movie.title}
-                      {index < result.known_for.length - 1 && <br />}
-                    </React.Fragment>
-                    ))
-                  }
+                  {result.known_for &&
+                    result.known_for.map((movie, index) => (
+                      <React.Fragment>
+                        {movie.title}
+                        {index < result.known_for.length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
                 </p>
               </div>
             </div>
-            <h2 className="searchresults-title">{result.name}</h2>
-          </div>
+            <h2 className="actor-name">{result.name}</h2>
+          </Link>
         </li>
       );
     } else {

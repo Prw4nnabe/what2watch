@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAccessToken } from './ApiAccess';
 import { IoMdSearch } from 'react-icons/io';
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC <{ onClose: () => void }> = ({ onClose }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const SearchBar: React.FC = () => {
       );
       const data = await response.json();
       navigate(`/search-results`, { state: { results: data.results } });
+      onClose();
     } catch (error) {
       console.error('Wystąpił błąd podczas wyszukiwania:', error);
     }
@@ -44,7 +45,7 @@ const SearchBar: React.FC = () => {
           value={searchQuery}
           onChange={handleSearchChange}
         />
-        <button type="submit" className="search-button">
+        <button type="submit" className="search-button" onClick={onClose}>
           <IoMdSearch />
         </button>
       </form>
