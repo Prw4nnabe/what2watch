@@ -1,5 +1,7 @@
 # what2watch
 
+Update 14.06 added theme n switcher, improved lists, some css n more
+
 
 Roadmap:
 
