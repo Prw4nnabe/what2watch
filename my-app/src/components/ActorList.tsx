@@ -87,7 +87,7 @@ function ActorCard({ actor }: ActorCardProps) {
 
   return (
     <li className="actor-card">
-      <Link to={`/actor/${actor.name}`}>
+      <Link to={`/actor/${actor.id}`}>
         <div className="actor-image-container">
           <img
             className="actor-profile"

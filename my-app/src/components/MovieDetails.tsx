@@ -76,7 +76,7 @@ function MovieDetails() {
       <div className='overlay-bg'>
         <div className="movie-details-content">
           <img
-            src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
             alt={movie.title}
             className="poster-details"
           />
