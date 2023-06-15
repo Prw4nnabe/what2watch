@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/what2watch/static/css/main.e4d9c2e9.css",
-    "main.js": "/what2watch/static/js/main.f8bc182d.js",
+    "main.css": "/what2watch/static/css/main.1a47e57c.css",
+    "main.js": "/what2watch/static/js/main.e55fef18.js",
     "index.html": "/what2watch/index.html",
-    "main.e4d9c2e9.css.map": "/what2watch/static/css/main.e4d9c2e9.css.map",
-    "main.f8bc182d.js.map": "/what2watch/static/js/main.f8bc182d.js.map"
+    "main.1a47e57c.css.map": "/what2watch/static/css/main.1a47e57c.css.map",
+    "main.e55fef18.js.map": "/what2watch/static/js/main.e55fef18.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4d9c2e9.css",
-    "static/js/main.f8bc182d.js"
+    "static/css/main.1a47e57c.css",
+    "static/js/main.e55fef18.js"
   ]
 }
