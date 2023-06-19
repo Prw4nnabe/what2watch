@@ -1,5 +1,7 @@
 # what2watch
 
+deploy here: https://prw4nnabe.github.io/what2watch/
+
 Update 14.06 added theme n switcher, improved lists, some css n more
 
 
